@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitara Aftab | Full Stack Developer (Fresh Graduate)</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Header Section */
+        #header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 150px 0 100px;
+        }
+        
+        .header-content h1 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* About Section */
+        #about {
+            background-color: var(--light-color);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Education */
+        .education-item {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Skills */
+        .skills-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .skill-badge {
+            display: inline-block;
+            background: var(--light-color);
+            color: var(--dark-color);
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        /* Portfolio */
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-img {
+            transition: transform 0.5s;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        /* Contact */
+        #contact {
+            background-color: var(--light-color);
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        /* Social Links */
+        #social {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 50px 0;
+        }
+        
+        .social-icon {
+            font-size: 2rem;
+            margin: 0 15px;
+            color: white;
+            transition: color 0.3s;
+        }
+        
+        .social-icon:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            #header {
+                padding: 120px 0 80px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">FULL STACK DEVELOPER</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#header">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section id="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="header-content">
+                        <h1 class="display-4 fw-bold mb-3">Hi, I'm SITARA AFTAB</h1>
+                        <p class="lead mb-4">Information Technology Graduate | Full Stack Developer</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="#contact" class="btn btn-primary btn-lg px-4">Hire Me</a>
+                            <a href="#portfolio" class="btn btn-outline-light btn-lg px-4">See My Projects</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title fw-bold">About Me</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <p class="lead mb-4">I'm a passionate <strong>Information Technology graduate</strong> specializing in full-stack web development.</p>
+                    <p>I love building responsive, user-friendly applications using modern technologies. Through my academic projects and self-learning, I've gained hands-on experience in both frontend and backend development.</p>
+                    <p>I'm eager to contribute my skills to real-world projects and continue growing as a developer.</p>
+                    
+                    <div class="row mt-5">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><strong>Degree:</strong> B.S Information Technology</li>
+                                <li class="mb-2"><strong>Email:</strong> sitaraaftab892@gmail.com</li>
+                                <li class="mb-2"><strong>Location:</strong> Lahore, Pakistan</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><strong>Specialization:</strong> Full Stack Development</li>
+                                <li class="mb-2"><strong>Availability:</strong> Open to Opportunities</li>
+                                <li class="mb-2"><strong>Languages:</strong> English, Urdu</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="bg-white">
+        <div class="container">
+            <h2 class="section-title fw-bold">Education</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="education-item">
+                        <h3>Bachelor Studies in Information Technology</h3>
+                        <p class="text-muted">University Of The Punjab | 2020 - 2024</p>
+                        <ul>
+                            <li>Relevant coursework: Web Development, Basic AI course</li>
+                            <li>Final Year Project: Forecasting Cryptocurrency using AI</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="education-item">
+                        <h3>Certifications</h3>
+                        <p class="text-muted">3 months training in Full Stack Web Development | 2025</p>
+                        <p class="text-muted">Basic AI course | 2024</p>
+                        <p class="text-muted">Web Development | 2022</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title fw-bold">My Skills</h2>
+            <div class="skills-container">
+                <div class="text-center">
+                    <h4>Frontend</h4>
+                    <div class="mb-4">
+                        <span class="skill-badge">HTML5</span>
+                        <span class="skill-badge">CSS3</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">React.js</span>
+                        <span class="skill-badge">Bootstrap</span>
+                    </div>
+                    
+                    <h4>Backend</h4>
+                    <div class="mb-4">
+                        <span class="skill-badge">Node.js</span>
+                        <span class="skill-badge">Express.js</span>
+                    </div>
+                    
+                    <h4>Databases</h4>
+                    <div class="mb-4">
+                        <span class="skill-badge">MongoDB</span>
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">Firebase</span>
+                    </div>
+                    
+                    <h4>Tools</h4>
+                    <div>
+                        <span class="skill-badge">Git</span>
+                        <span class="skill-badge">VS Code</span>
+                        <span class="skill-badge">Figma</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="bg-white">
+        <div class="container">
+            <h2 class="section-title fw-bold">My Projects</h2>
+            <div class="row g-4">
+                <!-- Personal Portfolio -->
+                <div class="col-md-4">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Personal Portfolio" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h4>Personal Portfolio</h4>
+                            <p>HTML, CSS, Bootstrap</p>
+                            <p class="text-center px-3">A responsive portfolio website showcasing my skills and projects with clean design and smooth animations.</p>
+                            <a href="file:///D:/portfolio/fresh.html" class="btn btn-outline-light mt-2">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Real-time Chat App -->
+                <div class="col-md-4">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Real-time Chat App" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h4>Real-time Chat App</h4>
+                            <p>React, Node.js, FireBase</p>
+                            <p class="text-center px-3">A full-stack chat application with real-time messaging, user authentication, and message history.</p>
+                            <a href="http://localhost:3000/" class="btn btn-outline-light mt-2">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Restaurant Website -->
+                <div class="col-md-4">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Restaurant Website" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h4>Restaurant Website</h4>
+                            <p>HTML, CSS, Bootstrap</p>
+                            <p class="text-center px-3">A responsive restaurant website with menu, reservation system, and gallery showcasing food items.</p>
+                            <a href="file:///D:/corvit-classes/restraunt/index.html" class="btn btn-outline-light mt-2">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Simple Calculator -->
+                <div class="col-md-4">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1587145820266-a5951ee6f620?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Simple Calculator" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h4>Simple Calculator</h4>
+                            <p>HTML, CSS, JavaScript</p>
+                            <p class="text-center px-3">A functional calculator with basic arithmetic operations, clear function, and responsive design.</p>
+                            <a href="file:///D:/CodeAlpha-Sep/Task_1/calculator.html" class="btn btn-outline-light mt-2">Try It</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Analog Clock -->
+                <div class="col-md-4">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1499363536502-87642509e31b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" 
+                             alt="Analog Clock" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h4>Analog Clock</h4>
+                            <p>HTML, CSS, JavaScript</p>
+                            <p class="text-center px-3">A beautiful analog clock with smooth-moving hands showing current time, built with pure JavaScript.</p>
+                            <a href="file:///D:/Other%20Projects/clock%20project/learn.html" class="btn btn-outline-light mt-2">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- News App -->
+                <div class="col-md-4">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="News App" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h4>News App</h4>
+                            <p>React, News API</p>
+                            <p class="text-center px-3">A news aggregator application that fetches and displays current news articles from various sources with category filtering.</p>
+                            <a href="http://localhost:3000/" class="btn btn-outline-light mt-2">View News</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title fw-bold">Get In Touch</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-info h-100">
+                        <h3 class="mb-4">Contact Info</h3>
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="contact-icon fas fa-envelope"></i>
+                            <div>
+                                <h5>Email</h5>
+                                <p>sitaraaftab892@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="contact-icon fas fa-phone"></i>
+                            <div>
+                                <h5>Phone</h5>
+                                <p>+92 3204614096</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <i class="contact-icon fas fa-map-marker-alt"></i>
+                            <div>
+                                <h5>Location</h5>
+                                <p>Lahore, Pakistan (Open to Remote)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Links Section -->
+    <section id="social">
+        <div class="container text-center">
+            <h3 class="mb-4">Connect With Me</h3>
+            <div class="d-flex justify-content-center">
+                <a href="https://github.com/SITARAAFTAB" target="_blank" class="btn btn-outline-light btn-lg mx-2">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/sitara-aftab-4642b9325/" target="_blank" class="btn btn-outline-light btn-lg mx-2">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Sitara Aftab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
